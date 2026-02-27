@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Geh Geh Motivational Clips</title>
+    <!-- CSS will go here later -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Popup message -->
+    <div id="popup"
+        style="position:fixed; top:20px; left:50%; transform:translateX(-50%); background: rgba(0,255,127,0.9); color:#000; padding:15px 25px; border-radius:10px; font-weight:bold; display:none;">
+        🙏 Support me if you enjoy these clips!
+    </div>
+
+    <header style="text-align:center; margin-bottom:20px;">
+        <h1>💚 Geh Geh Wisdom Shorts</h1>
+        <p>Listen & download the voice notes, we will be updating more!</p>
+    </header>
+
+    <main id="audio-list" style="display:flex; flex-wrap:wrap; justify-content:center; gap:15px;">
+        <!-- Audio cards will be generated here dynamically -->
+    </main>
+
+    <!-- Support Modal -->
+    <div id="support-modal" class="modal">
+        <div class="modal-content">
+            <span id="close-modal">&times;</span>
+            <h2>Support Me</h2>
+            <p>If you enjoy these clips, you can support me:</p>
+            <p><strong>Joseph</strong></p>
+            <p>Moniepoint Account Number:</p>
+            <p id="account-number">6025064631</p>
+            <button id="copy-btn">Copy Account Number</button>
+            <p style="font-size:0.9rem; color:#ccc; margin-top:10px;">Close this box to continue downloading clips</p>
+        </div>
+    </div>
+
+    <script>
+        // Function to show popup
+        function showPopup() {
+            const popup = document.getElementById('popup');
+            popup.style.display = 'block';
+            setTimeout(() => {
+                popup.style.opacity = '0';
+            }, 4000);
+        }
+
+        // Call popup on page load
+        window.onload = () => {
+            showPopup();
+            loadAudioClips();
+        }
+
+        // Load all audio clips dynamically
+        function loadAudioClips() {
+            const audioList = document.getElementById('audio-list');
+
+            // Array of clip filenames (replace these with your actual clip names if needed)
+            const clips = [
+                "you no get money you are surrounded by poor people.mp3",
+                "1000115014.mp3",
+                "am very very angry poor man no get hope.mp3",
+                "definition of talking stage.mp3",
+                "dont give love too many importance.mp3",
+                "focus on building capability in your life.mp3",
+                "help yourself.mp3",
+                "i fit vex empower your father but it is not my responsibility.mp3",
+                "I no wan go down.mp3",
+                "If girls the get money the way we dey get.mp3",
+                "is very easy for people to live, give her belle.mp3",
+                "leave woman alone oo.mp3",
+                "make e better for me and my friend.mp3",
+                "Na where pesin see value na where e dey invest.mp3",
+                "Nobody is coming to help you it is your responsibility.mp3",
+                "paste aza make i delete am.mp3", "people go move on.mp3",
+                "she fit the sleep but man go carry am.mp3",
+                "spoil you girlfriend you see that statement - foolish.mp3",
+                "that girl no force you na you choose to.mp3",
+                "why me - na me e wan happen to.mp3",
+                "Without Disgrace you no go fit express through grace.mp3",
+                "you dey play with fire am a financial dynamite.mp3",
+                "you dey sleep i dey grind.mp3",
+                "you go cry o my sister.mp3",
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                // Example: 'Be your own hero.mp3', 'Keep grinding.mp3'
+                // If your filenames have spaces or special chars, ensure they match exactly
+            ];
+
+            // Auto-generate clips from your 'clips' folder (assuming all .mp3 files)
+            // If you want fully dynamic, you can leave this array empty and use a build step to inject all files.
+
+            // For demonstration, we'll simulate with placeholders
+            for (let i = 1; i <= 25; i++) {
+                // Example filenames; replace with your real ones if needed
+                clips.push(`clips/clip${i}.mp3`);
+            }
+
+            // Create card for each clip
+            clips.forEach(fileName => {
+                const title = fileName.replace('.mp3', '');
+                const clipPath = `clips/${fileName}`;
+
+                const card = document.createElement('div');
+                card.className = 'audio-card';
+
+                card.innerHTML = `
+        <h3>${title}</h3>
+        <audio controls>
+            <source src="${encodeURI(clipPath)}" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
+        <button onclick="downloadAudio('${encodeURI(clipPath)}', '${title}.mp3')">Download</button>
+    `;
+
+                audioList.appendChild(card);
+            });
+        }
+
+        // Function to download audio
+        function downloadAudio(url, filename) {
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = filename;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+
+        // Show modal after 7 seconds
+        setTimeout(() => {
+            const modal = document.getElementById('support-modal');
+            modal.style.display = 'flex';
+        }, 7000);
+
+        // Close modal when clicking the X
+        document.getElementById('close-modal').onclick = function () {
+            document.getElementById('support-modal').style.display = 'none';
+        }
+
+        // Copy account number to clipboard
+        document.getElementById('copy-btn').onclick = function () {
+            const accountNumber = document.getElementById('account-number').innerText;
+            navigator.clipboard.writeText(accountNumber).then(() => {
+                alert('Account number copied to clipboard!');
+            });
+        }
+    </script>
+</body>
+
+</html>
