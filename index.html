@@ -40,6 +40,9 @@
     </div>
 
     <script>
+        // To track the currently playing audio, if any
+        let currentlyPlaying = null;
+
         // Function to show popup
         function showPopup() {
             const popup = document.getElementById('popup');
@@ -85,33 +88,7 @@
                 "you dey play with fire am a financial dynamite.mp3",
                 "you dey sleep i dey grind.mp3",
                 "you go cry o my sister.mp3",
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                // Example: 'Be your own hero.mp3', 'Keep grinding.mp3'
-                // If your filenames have spaces or special chars, ensure they match exactly
             ];
-
-            // Auto-generate clips from your 'clips' folder (assuming all .mp3 files)
-            // If you want fully dynamic, you can leave this array empty and use a build step to inject all files.
-
-            // For demonstration, we'll simulate with placeholders
-            for (let i = 1; i <= 25; i++) {
-                // Example filenames; replace with your real ones if needed
-                clips.push(`clips/clip${i}.mp3`);
-            }
 
             // Create card for each clip
             clips.forEach(fileName => {
@@ -129,6 +106,22 @@
         </audio>
         <button onclick="downloadAudio('${encodeURI(clipPath)}', '${title}.mp3')">Download</button>
     `;
+
+                // Add event listeners to ensure only one audio plays at a time
+                const audioElement = card.querySelector('audio');
+                audioElement.addEventListener('play', () => {
+                    if (currentlyPlaying && currentlyPlaying !== audioElement) {
+                        currentlyPlaying.pause(); // Pause the currently playing audio
+                        currentlyPlaying.currentTime = 0; // Reset its time
+                    }
+                    currentlyPlaying = audioElement; // Set the new currently playing audio
+                });
+
+                audioElement.addEventListener('pause', () => {
+                    if (currentlyPlaying === audioElement) {
+                        currentlyPlaying = null; // Clear if the audio is paused
+                    }
+                });
 
                 audioList.appendChild(card);
             });
