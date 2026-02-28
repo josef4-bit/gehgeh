@@ -5,7 +5,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Geh Geh Motivational Clips</title>
-    <!-- CSS will go here later -->
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -59,64 +58,40 @@
         function loadAudioClips() {
             const audioList = document.getElementById('audio-list');
 
-            // Array of clip filenames (replace these with your actual clip names if needed)
+            // Array of clip filenames with correct paths
             const clips = [
                 "Clips/you no get money you are surrounded by poor people.mp3",
                 "Clips/1000115014.mp3",
                 "Clips/am very very angry poor man no get hope.mp3",
                 "Clips/definition of talking stage.mp3",
                 "Clips/dont give love too many importance.mp3",
-                "focus on building capability in your life.mp3",
-                "help yourself.mp3",
-                "i fit vex empower your father but it is not my responsibility.mp3",
-                "I no wan go down.mp3",
-                "If girls the get money the way we dey get.mp3",
-                "is very easy for people to live, give her belle.mp3",
-                "leave woman alone oo.mp3",
-                "make e better for me and my friend.mp3",
-                "Na where pesin see value na where e dey invest.mp3",
-                "Nobody is coming to help you it is your responsibility.mp3",
-                "paste aza make i delete am.mp3", "people go move on.mp3",
-                "she fit the sleep but man go carry am.mp3",
-                "spoil you girlfriend you see that statement - foolish.mp3",
-                "that girl no force you na you choose to.mp3",
-                "why me - na me e wan happen to.mp3",
-                "Without Disgrace you no go fit express through grace.mp3",
-                "you dey play with fire am a financial dynamite.mp3",
-                "you dey sleep i dey grind.mp3",
-                "you go cry o my sister.mp3",
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                // Example: 'Be your own hero.mp3', 'Keep grinding.mp3'
-                // If your filenames have spaces or special chars, ensure they match exactly
+                "Clips/focus on building capability in your life.mp3",
+                "Clips/help yourself.mp3",
+                "Clips/i fit vex empower your father but it is not my responsibility.mp3",
+                "Clips/I no wan go down.mp3",
+                "Clips/If girls the get money the way we dey get.mp3",
+                "Clips/is very easy for people to live, give her belle.mp3",
+                "Clips/leave woman alone oo.mp3",
+                "Clips/make e better for me and my friend.mp3",
+                "Clips/Na where pesin see value na where e dey invest.mp3",
+                "Clips/Nobody is coming to help you it is your responsibility.mp3",
+                "Clips/paste aza make i delete am.mp3",
+                "Clips/people go move on.mp3",
+                "Clips/she fit the sleep but man go carry am.mp3",
+                "Clips/spoil you girlfriend you see that statement - foolish.mp3",
+                "Clips/that girl no force you na you choose to.mp3",
+                "Clips/why me - na me e wan happen to.mp3",
+                "Clips/Without Disgrace you no go fit express through grace.mp3",
+                "Clips/you dey play with fire am a financial dynamite.mp3",
+                "Clips/you dey sleep i dey grind.mp3",
+                "Clips/you go cry o my sister.mp3",
+                "am very very angry poor man no get hope.mp3"
             ];
-
-            // Auto-generate clips from your 'clips' folder (assuming all .mp3 files)
-            // If you want fully dynamic, you can leave this array empty and use a build step to inject all files.
-
-            // For demonstration, we'll simulate with placeholders
-            for (let i = 1; i <= 25; i++) {
-                // Example filenames; replace with your real ones if needed
-                clips.push(`clips/clip${i}.mp3`);
-            }
 
             // Create card for each clip
             clips.forEach(fileName => {
-                const title = fileName.replace('.mp3', '');
-                const clipPath = `clips/${fileName}`;
+                const title = fileName.replace('.mp3', '').replace('Clips/', '');
+                const clipPath = fileName;
 
                 const card = document.createElement('div');
                 card.className = 'audio-card';
@@ -164,6 +139,5 @@
         }
     </script>
 </body>
-
 
 </html>
